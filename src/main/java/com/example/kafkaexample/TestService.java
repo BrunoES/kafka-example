@@ -43,7 +43,7 @@ public class TestService {
 	public void testProducer(DataDTO data) {
 		String key = UUID.randomUUID().toString();
 		try {
-			producer.send("MEUUSADO.ANNOUNCEMENT-VALIDATION", key, data);
+			producer.send("KAFKA-EXAMPLE.QUEUE", key, data);
 			System.out.println("Mensagem " + key + " adicionada à fila.");
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
@@ -53,7 +53,7 @@ public class TestService {
 	public void testConsumer() {
 		try {
 			consumer.configure(KafkaExampleApplication.class.getSimpleName(),
-					Pattern.compile("MEUUSADO.*"),
+					Pattern.compile("KAFKA-EXAMPLE.*"),
 					this::parse,
 					DataDTO.class,
 					Map.of(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName()));

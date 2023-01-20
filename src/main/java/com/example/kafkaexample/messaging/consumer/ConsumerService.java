@@ -21,7 +21,6 @@ import org.springframework.stereotype.Service;
 import com.example.kafkaexample.messaging.serialize.GsonDeserializer;
 
 public class ConsumerService<T> implements Closeable {
-	public static final String TYPE_CONFIG = "com.example.kafkaexample.messaging.serialize.dto";
 	
 	private String kafkaAddress;
 	private KafkaConsumer<String, T> consumer;
@@ -63,7 +62,7 @@ public class ConsumerService<T> implements Closeable {
 		properties.setProperty(ConsumerConfig.CLIENT_ID_CONFIG, groupId + UUID.randomUUID().toString());
 		properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
 		properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "1");
-		properties.setProperty(TYPE_CONFIG, type.getName());
+		properties.setProperty(GsonDeserializer.TYPE_CONFIG, type.getName());
 		return properties;
 	}
 

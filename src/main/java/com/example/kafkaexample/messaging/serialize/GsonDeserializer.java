@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class GsonDeserializer<T> implements Deserializer<T> {
-	static final String TYPE_CONFIG = "com.estudos.kafka";
+	public static final String TYPE_CONFIG = "com.example.kafkaexample.messaging.serialize.dto";
 	private final Gson gson = new GsonBuilder().create();
 	private Class<T> type;
 	
